@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Denuncia;
 use App\Models\Denunciante;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class DenunciaController extends Controller
 {
