@@ -354,19 +354,19 @@ diligencias dispuestas por su despacho, señalo los siguientes canales de comuni
 <br><br>
 d. Correo electrónico GMAIL:…
 {{
-$datos1['email_denunciante']
+$datos1['email']
 }}
 …. <br>
 e. Domicilio:……
 {{
-$datos1['direccion_denunciante'],
-$datos1['distrito_denunciante'],
-$datos1['ciudad_denunciante']    
+$datos1['direccion'],
+$datos1['distrito'],
+$datos1['ciudad']    
 }}
 … <br>
 f. Teléfono:……
 {{
-$datos1['celular_denunciante']
+$datos1['celular']
 }}
 …. <br>
 <br><br>
