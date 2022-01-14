@@ -27,8 +27,9 @@ class DenunciaController extends Controller
         $provincia = $datos1['ciudad_denunciante'];
         $email = $datos1['email_denunciante'];
         $celular = $datos1['celular_denunciante'];
+        $tipoDenuncia = $datos1['tipo_denuncia'];
         
-        Denunciante::create([
+        $denunciante = Denunciante::create([
             'name' => $name, 
             'lastname' => $lastname,
             'email' => $email,
@@ -39,14 +40,20 @@ class DenunciaController extends Controller
             'celular' => $celular,
         ]);
 
-        return view('denuncia.denuncia');
+        if ($tipoDenuncia === 'denuncia1') {
+           return view('denuncia.denuncia', compact('denunciante'));
+        }
+        if ($tipoDenuncia === 'denuncia2') {
+            return view('denuncia.violencia_familiar_denuncia', compact('denunciante'));
+         }
+        
 
     }
 
-    public function crear2(Request $request)
+    public function crear2(Request $request, $denuncianteId)
     {
         //
-        $datos1 = Denunciante::first();
+        $datos1 = Denunciante::find($denuncianteId);
         $nombre = $datos1['name'];
         $datos2 = $request->all();
 
@@ -54,6 +61,28 @@ class DenunciaController extends Controller
         /* $recibo_archivo = $datos2['recibo_archivo']; */
 
         $pdf = PDF::loadView('pdf.denuncia', compact( 'datos1' , 'datos2' ));
+        return $pdf->download('denuncia.pdf');
+
+        /* if($request->hasFile('recibo_archivo')){
+            $file=$request->file('recibo_archivo');
+            $nombre = "pdf_".time().".".$file->guessExtension();
+            $file->store('public');
+            
+        } */
+
+    }
+
+    public function crear3(Request $request, $denuncianteId)
+    {
+        //
+        $datos1 = Denunciante::find($denuncianteId);
+        $nombre = $datos1['name'];
+        $datos2 = $request->all();
+
+
+        /* $recibo_archivo = $datos2['recibo_archivo']; */
+
+        $pdf = PDF::loadView('pdf.violencia_familiar_denuncia', compact( 'datos1' , 'datos2' ));
         return $pdf->download('denuncia.pdf');
 
         /* if($request->hasFile('recibo_archivo')){

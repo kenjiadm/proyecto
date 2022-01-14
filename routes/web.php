@@ -23,5 +23,6 @@ Route::get('/formulario', function () {
 });
 Route::post('denuncia', [ DenunciaController::class, 'crear' ]);
 
-Route::post('denuncia2', [ DenunciaController::class, 'crear2' ]);
+Route::post('denuncia2/{denuncianteId}', [ DenunciaController::class, 'crear2' ]);
 
+Route::post('denuncia3/{denuncianteId}', [ DenunciaController::class, 'crear3' ]);

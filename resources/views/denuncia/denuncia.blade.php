@@ -4,7 +4,7 @@
 
 <div class="container">
 
-<form class="m-4 p-4" action="{{url('denuncia2')}}" method="post" enctype="multipart/form-data">
+<form class="m-4 p-4" action="{{url('denuncia2', $denunciante->id)}}" method="post" enctype="multipart/form-data">
 @csrf
   <div class="mb-3">
     <label class="form-label">¿Usted ha hecho entrega de algún bien mueble o dinero o suma de dinero?</label>
