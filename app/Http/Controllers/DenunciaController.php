@@ -79,11 +79,11 @@ class DenunciaController extends Controller
         $nombre = $datos1['name'];
         $datos2 = $request->all();
 
-        return dd($request->all());
+        // return dd($request->all());
         /* $recibo_archivo = $datos2['recibo_archivo']; */
 
-        // $pdf = PDF::loadView('pdf.violencia_familiar_denuncia', compact( 'datos1' , 'datos2' ));
-        // return $pdf->download('denuncia.pdf');
+        $pdf = PDF::loadView('pdf.violencia_familiar_denuncia', compact( 'datos1' , 'datos2' ));
+        return $pdf->download('denuncia.pdf');
 
         /* if($request->hasFile('recibo_archivo')){
             $file=$request->file('recibo_archivo');
