@@ -322,12 +322,9 @@ Adjunto como anexos los siguientes documentos:
 <br>
 <br>
 1) Copia de mi DNI. <br>
-@if ($datos2['anexo1_nombre'])
-2) {{$datos2['anexo1_nombre']}} <br>
-@endif
-@if ($datos2['anexo2_nombre'])
-3) {{$datos2['anexo2_nombre']}} <br>
-@endif
+@foreach ( $datos2['anexos'] as $anexo)
+{{$loop->iteration + 1}}) {{$anexo}} <br>
+@endforeach
 <br>
 <br>
 <b>Por tanto:</b>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DenunciaController;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,9 @@ Route::post('denuncia', [ DenunciaController::class, 'crear' ]);
 Route::post('denuncia2/{denuncianteId}', [ DenunciaController::class, 'crear2' ]);
 
 Route::post('denuncia3/{denuncianteId}', [ DenunciaController::class, 'crear3' ]);
+
+Route::get('/test', function () {
+    Storage::put('/hola/holas.txt','textooo');
+
+    return 'hola';
+});

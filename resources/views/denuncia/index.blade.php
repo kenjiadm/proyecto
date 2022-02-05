@@ -48,7 +48,7 @@
     <div id="emailHelp" class="form-text text-danger">Este campo no puede quedar vacio*</div>
   </div>
   <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <input type="checkbox" class="form-check-input" name="confirmacion" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Confirmo que los datos proporcionados son reales.</label>
   </div>
   <div class="mb-3">
