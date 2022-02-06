@@ -144,9 +144,10 @@ class DenunciaController extends Controller
         // unir pdfs
         $pdfMerge = new PdfMerge();
 
+        $pdfMerge->add(storage_path('app/'.$folder.'/denuncia.pdf'));
+
         $pdfMerge->add(storage_path('app/'.$folder.'/dni.pdf'));
 
-        $pdfMerge->add(storage_path('app/'.$folder.'/denuncia.pdf'));
         if($request->hasFile('anexo1_archivo')){
             $pdfMerge->add(storage_path('app/'.$folder.'/anexo1_nombre.pdf'));
         }
