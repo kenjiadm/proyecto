@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DenunciaController;
+use App\Http\Livewire\DenunciaViolenciaFamiliar;
 use Illuminate\Support\Facades\Storage;
 
 /*
@@ -17,7 +18,9 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('/denuncia-violencia-familiar', DenunciaViolenciaFamiliar::class)->name('denuncia-violencia-familiar');
 
 Route::get('/formulario', function () {
     return view('denuncia.index');
@@ -27,9 +30,3 @@ Route::post('denuncia', [ DenunciaController::class, 'crear' ]);
 Route::post('denuncia2/{denuncianteId}', [ DenunciaController::class, 'crear2' ]);
 
 Route::post('denuncia3/{denuncianteId}', [ DenunciaController::class, 'crear3' ]);
-
-Route::get('/test', function () {
-    Storage::put('/hola/holas.txt','textooo');
-
-    return 'hola';
-});

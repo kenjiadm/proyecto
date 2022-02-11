@@ -3,7 +3,7 @@
 @section('cuerpo')
 
 <div x-data="form" class="container">
-  <form class="m-4 p-4" action="{{url('denuncia3', $denunciante->id)}}" method="post" enctype="multipart/form-data">
+  <form class="m-4 p-4" action="{{url('denuncia3', $id)}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
       <label class="form-label">1) ¿Ha sufrido USTED violencia fisica?</label>
@@ -52,8 +52,8 @@
         </label>
       </div>
     </div>
-    <template x-if="active1">
-      <div class="mb-3">
+    {{-- <template x-if="active1"> --}}
+      <div x-show="active1" class="mb-3">
         <label class="form-label">3.1) He tomado conocimiento de actos de violencia física en mi condición de:</label>
         <div class="form-check">
           <input @click="toggleActive1" class="form-check-input" type="radio" name="respuesta1.1" value="a"
@@ -77,7 +77,7 @@
           </label>
         </div>
       </div>
-    </template>
+    {{-- </template> --}}
     <template x-if="active1a">
       <div class="mb-3">
         <label class="form-label">3.1.1) Precisar cargo y centro de salud en el que se desempeña</label>

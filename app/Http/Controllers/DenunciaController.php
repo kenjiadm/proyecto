@@ -57,7 +57,7 @@ class DenunciaController extends Controller
            return view('denuncia.denuncia', compact('denunciante'));
         }
         if ($tipoDenuncia === 'denuncia2') {
-            return view('denuncia.violencia_familiar_denuncia', compact('denunciante'));
+            return view('denuncia.violencia_familiar_denuncia', ['id' => $denunciante->id]);
          }
         
 
