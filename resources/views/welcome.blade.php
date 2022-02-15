@@ -10,8 +10,8 @@
     </div>
     <div class="row d-flex justify-content-center w-100 h-50">
         <div class="col-6 col-sm-4 col-md-3 text-center">
-            <a class="btn btn-outline-primary" style="font-size: 2rem">
-                Denuncia 
+            <a href="{{route('denuncia-apropiacion-ilicita')}}" class="btn btn-outline-primary" style="font-size: 2rem">
+                Denuncia de Apropiacion Ilicita 
             </a>
         </div>
         <div class="col-6 col-sm-4 col-md-3 text-center">

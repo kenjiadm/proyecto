@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DenunciaController;
+use App\Http\Livewire\DenunciaUno;
 use App\Http\Livewire\DenunciaViolenciaFamiliar;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,6 +22,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/denuncia-violencia-familiar', DenunciaViolenciaFamiliar::class)->name('denuncia-violencia-familiar');
+Route::get('/denuncia-apropiacion-ilicita', DenunciaUno::class)->name('denuncia-apropiacion-ilicita');
 
 Route::get('/formulario', function () {
     return view('denuncia.index');

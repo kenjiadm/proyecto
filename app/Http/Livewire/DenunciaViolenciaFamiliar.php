@@ -110,7 +110,6 @@ class DenunciaViolenciaFamiliar extends Component
 
     public function decreaseCount(){
         $this->resetErrorBag();
-        $this->validateData();
         if($this->currentCount === 0) return;
         $this->currentCount--;
         $this->emit('foo');
@@ -129,10 +128,7 @@ class DenunciaViolenciaFamiliar extends Component
         }
 
         $datos2['anexos'] = [];       
-        $folder = uniqid() . now()->timestamp;
-
-        // // Transformar imagen a pdf
-        // $this->saveAsPDF($request->archivo_dni, $folder, 'dni');
+        $fileName = uniqid() . now()->timestamp;
         
         if($this->anexo1_nombre && $this->confirmacion_anexos){
             array_push($datos2['anexos'],
@@ -241,12 +237,8 @@ class DenunciaViolenciaFamiliar extends Component
             $anexositems = '';
             $templateCarta->setValue('anexos', $anexositems);
         }
-        Storage::disk('public')->makeDirectory($folder);
-        Storage::disk('local')->makeDirectory($folder);
-        $templateCarta->saveAs('storage/' . $folder .'/denuncia.docx');
-        Storage::disk('local')->move('public/' . $folder .'/denuncia.docx', $folder.'/denuncia.docx');
-        Storage::disk('public')->deleteDirectory($folder);
-        return Storage::disk('local')->download($folder .'/denuncia.docx');
+        $templateCarta->saveAs('storage/' . $fileName .'.docx');
+        return response()->download($fileName .'.docx', 'violencia_familiar.docx')->deleteFileAfterSend(true);
         // // generar pdf carta
 
         // $pdfCarta = PDF::loadView('pdf.violencia_familiar_denuncia', compact( 'datos1' , 'datos2' ));
