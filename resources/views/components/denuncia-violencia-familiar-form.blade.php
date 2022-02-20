@@ -562,13 +562,6 @@
             <b class="form-label">Anexos:</b>
         </div>
         <div class="mb-3">
-            <label class="form-label">Adjuntar copia de su DNI</label>
-            <div class="col-10 ">
-                <input type="file" class="form-control" name="archivo_dni" wire:model.lazy="archivo_dni">
-                <div class="form-text text-danger">@error('archivo_dni') {{$message}} @enderror</div>
-            </div>
-        </div>
-        <div class="mb-3">
             <label class="form-label">En caso quiera adjuntar otros anexos.</label>
             <div class="col-10 ">
                 <div class="form-text">Ejemplo: fotografías de la relación que mantuvo con el / la denunciado /a,

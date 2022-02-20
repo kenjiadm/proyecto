@@ -50,7 +50,6 @@ class DenunciaViolenciaFamiliar extends Component
     public $respuesta11_distrito;
     public $respuesta11_direccion;
     public $respuesta12;
-    public $archivo_dni;
     public $confirmacion_anexos;
     public $anexo1_nombre;
     public $anexo2_nombre;
@@ -84,7 +83,6 @@ class DenunciaViolenciaFamiliar extends Component
         'respuesta11_distrito',
         'respuesta11_direccion',
         'respuesta12',
-        'archivo_dni',
         'confirmacion_anexos',
         'anexo1_nombre',
         'anexo2_nombre',
@@ -238,7 +236,7 @@ class DenunciaViolenciaFamiliar extends Component
             $templateCarta->setValue('anexos', $anexositems);
         }
         $templateCarta->saveAs('storage/' . $fileName .'.docx');
-        return response()->download($fileName .'.docx', 'violencia_familiar.docx')->deleteFileAfterSend(true);
+        return response()->download('storage/' . $fileName .'.docx', 'violencia_familiar.docx')->deleteFileAfterSend(true);
         // // generar pdf carta
 
         // $pdfCarta = PDF::loadView('pdf.violencia_familiar_denuncia', compact( 'datos1' , 'datos2' ));

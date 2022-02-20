@@ -18,12 +18,19 @@
             @if ($currentCount === 2)
             <div class="col-12 col-md-8 d-flex flex-column align-items-center justify-content-center py-5 px-md-5">
                 <h3>Paso 2/2: Información para la denuncia</h3>
-                <x-denuncia-form></x-denuncia-form>
+                <x-denuncia-form 
+                    :respuesta="$respuesta" 
+                    :confirmacionAnexos="$confirmacion_anexos" 
+                    :envioCarta="$envio_carta_notarial"
+                    :respuestaCarta="$respuesta_envio_carta_notarial"
+                ></x-denuncia-form>
                 <div class="w-100 d-flex justify-content-around">
                     <button wire:click='decreaseCount' type="button" class="btn btn-secondary">
                         Atrás
                     </button>
-                    <button type="button" wire:click='generarDenuncia' class="btn btn-primary">
+                    <button type="button" wire:click='generarDenuncia' class="btn btn-primary" 
+                     @if ($envio_carta_notarial === 'no') disabled  @endif
+                    >
                         Enviar Denuncia
                     </button>
                 </div>
