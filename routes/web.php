@@ -21,8 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/denuncia-violencia-familiar', DenunciaViolenciaFamiliar::class)->name('denuncia-violencia-familiar');
-Route::get('/denuncia-apropiacion-ilicita', DenunciaUno::class)->name('denuncia-apropiacion-ilicita');
+Route::get('/denuncia-por-violencia-familiar', DenunciaViolenciaFamiliar::class)->name('denuncia-violencia-familiar');
+Route::get('/denuncia-por-apropiacion-ilicita', DenunciaUno::class)->name('denuncia-apropiacion-ilicita');
 
 Route::get('/formulario', function () {
     return view('denuncia.index');

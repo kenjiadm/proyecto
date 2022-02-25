@@ -16,7 +16,7 @@
             </div>
             @endif
             @if ($currentCount === 2)
-            <div class="col-12 col-md-8 d-flex flex-column align-items-center justify-content-center py-5 px-md-5">
+            <div class="col-12 col-md-10 col-lg-8 d-flex flex-column align-items-center justify-content-center py-5 px-md-5">
                 <h3>Paso 2/2: Información para la denuncia</h3>
                 <x-denuncia-form 
                     :respuesta="$respuesta" 

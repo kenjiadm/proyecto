@@ -1,5 +1,9 @@
-<div x-data="form">
+@props(['respuestas'])
+<div>
     <div class="m-4 p-4">
+        @if (!empty($respuestas['advertensia']))
+        <div class="form-text text-danger">{{$respuestas['advertensia']}}</div>
+        @endif
         <div class="mb-3">
             <label class="form-label">1) ¿Ha sufrido USTED violencia fisica?</label>
             <div class="form-check">
@@ -37,284 +41,347 @@
             <div class="form-text text-danger">@error('respuesta6') {{$message}} @enderror</div>
         </div>
         <div class="mb-3">
-            <label class="form-label">3) ¿Ha tomado conocimiento de un acto de violencia fisica a otra persona?</label>
+            <label class="form-label">3) ¿Ha tomado conocimiento de un acto de violencia fisica contra otra
+                persona?</label>
             <div class="form-check">
-                <input @click="toggleActive" class="form-check-input" type="radio" name="respuesta1"
-                    wire:model.lazy="respuesta1" value="si" id="rp1_opcion1">
+                <input class="form-check-input" type="radio" name="respuesta1" wire:model.lazy="respuesta1" value="si"
+                    id="rp1_opcion1">
                 <label class="form-check-label" for="rp1_opcion1">
                     Si
                 </label>
             </div>
             <div class="form-check">
-                <input @click="toggleActive" class="form-check-input" type="radio" name="respuesta1"
-                    wire:model.lazy="respuesta1" value="no" id="rp1_opcion2">
+                <input class="form-check-input" type="radio" name="respuesta1" wire:model.lazy="respuesta1" value="no"
+                    id="rp1_opcion2">
                 <label class="form-check-label" for="rp1_opcion2">
                     No
                 </label>
             </div>
             <div class="form-text text-danger">@error('respuesta1') {{$message}} @enderror</div>
         </div>
-        <template x-if="active1">
-            <div class="mb-3">
-                <label class="form-label">3.1) He tomado conocimiento de actos de violencia física en mi condición
-                    de:</label>
-                <div class="form-check">
-                    <input @click="toggleActive1" class="form-check-input" type="radio" name="respuesta1_1"
-                    x-model="respuesta1_1" value="a" id="rp1_1_opcion1">
-                    <label class="form-check-label" for="rp1_1_opcion1">
-                        Personal de Salud
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input @click="toggleActive1" class="form-check-input" type="radio" name="respuesta1_1"
-                    x-model="respuesta1_1" value="b" id="rp1_1_opcion2">
-                    <label class="form-check-label" for="rp1_1_opcion2">
-                        Personal de Educación
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input @click="toggleActive1" class="form-check-input" type="radio" name="respuesta1_1"
-                    x-model="respuesta1_1" value="c" id="rp1_1_opcion3">
-                    <label class="form-check-label" for="rp1_1_opcion3">
-                        Otro
-                    </label>
-                </div>
-                <div class="form-text text-danger">@error('respuesta1_1') {{$message}} @enderror</div>
-            </div>
-        </template>
-        <template x-if="active1a">
-            <div class="mb-3">
-                <label class="form-label">3.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
-                <div class="col-10 ">
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp1_1_a_c" class="col-5 col-form-label">Cargo :</label>
-                        <div class="col-7">
-                            <input name="respuesta1_1_a_cargo" x-model="respuesta1_1_a_cargo" type="text"
-                                class="form-control" id="rp1_1_a_c">
-                            <div class="form-text text-danger">@error('respuesta1_1_a_cargo') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp1_1_a_l" class="col-5 col-form-label">Centro de Salud :</label>
-                        <div class="col-7">
-                            <input name="respuesta1_1_a_lugar" x-model="respuesta1_1_a_lugar" type="text"
-                                class="form-control" id="rp1_1_a_l">
-                            <div class="form-text text-danger">@error('respuesta1_1_a_lugar') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
-        <template x-if="active1b">
-            <div class="mb-3">
-                <label class="form-label">3.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
-                <div class="col-10 ">
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp1_1_b_c" class="col-5 col-form-label">Cargo :</label>
-                        <div class="col-7">
-                            <input name="respuesta1_1_b_cargo" x-model="respuesta1_1_b_cargo" type="text"
-                                class="form-control" id="rp1_1_b_c">
-                            <div class="form-text text-danger">@error('respuesta1_1_b_cargo') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp1_1_b_l" class="col-5 col-form-label">Centro Educativo :</label>
-                        <div class="col-7">
-                            <input name="respuesta1_1_b_lugar" x-model="respuesta1_1_b_lugar" type="text"
-                                class="form-control" id="rp1_1_b_l">
-                            <div class="form-text text-danger">@error('respuesta1_1_b_lugar') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
-        <template x-if="active1c" class="mb-3">
-            <div class="mb-3">
-                <label class="form-label">3.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
-                    conocimiento de los hechos que denuncia:</label>
-                <div class="col-10 ">
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp1_1_c_r" class="col-5 col-form-label">Relación con la víctima :</label>
-                        <div class="col-7">
-                            <input name="respuesta1_1_c_relacion" x-model="respuesta1_1_c_relacion" type="text"
-                                class="form-control" id="rp1_1_c_r">
-                            <div class="form-text text-danger">@error('respuesta1_1_c_relacion') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
+        @if ($respuestas['respuesta1'] === 'si')
         <div class="mb-3">
-            <label class="form-label">4) Fecha de la agresion o de inicio de las agresiones:</label>
+            <label class="form-label">3.1) He tomado conocimiento de actos de violencia física en mi condición
+                de:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta1_1" wire:model.lazy="respuesta1_1"
+                    value="a" id="rp1_1_opcion1">
+                <label class="form-check-label" for="rp1_1_opcion1">
+                    Personal de Salud
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta1_1" wire:model.lazy="respuesta1_1"
+                    value="b" id="rp1_1_opcion2">
+                <label class="form-check-label" for="rp1_1_opcion2">
+                    Personal de Educación
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta1_1" wire:model.lazy="respuesta1_1"
+                    value="c" id="rp1_1_opcion3">
+                <label class="form-check-label" for="rp1_1_opcion3">
+                    Relación de Parentesco
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta1_1" wire:model.lazy="respuesta1_1"
+                    value="d" id="rp1_1_opcion4">
+                <label class="form-check-label" for="rp1_1_opcion4">
+                    Otro
+                </label>
+            </div>
+            <div class="form-text text-danger">@error('respuesta1_1') {{$message}} @enderror</div>
+        </div>
+        @if ($respuestas['respuesta1_1'] === 'a')
+        <div class="mb-3">
+            <label class="form-label">3.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
             <div class="col-10 ">
-                <input type="date" class="form-control" name="respuesta3" wire:model.lazy="respuesta3">
-                <div class="form-text text-danger">@error('respuesta3') {{$message}} @enderror</div>
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp1_1_a_c" class="col-5 col-form-label">Cargo :</label>
+                    <div class="col-7">
+                        <input name="respuesta1_1_a_cargo" wire:model.lazy="respuesta1_1_a_cargo" type="text"
+                            class="form-control" id="rp1_1_a_c">
+                        <div class="form-text text-danger">@error('respuesta1_1_a_cargo') {{$message}} @enderror</div>
+                    </div>
+                </div>
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp1_1_a_l" class="col-5 col-form-label">Centro de Salud :</label>
+                    <div class="col-7">
+                        <input name="respuesta1_1_a_lugar" wire:model.lazy="respuesta1_1_a_lugar" type="text"
+                            class="form-control" id="rp1_1_a_l">
+                        <div class="form-text text-danger">@error('respuesta1_1_a_lugar') {{$message}} @enderror</div>
+                    </div>
+                </div>
             </div>
         </div>
+        @endif
+        @if ($respuestas['respuesta1_1'] === 'b')
         <div class="mb-3">
-            <label class="form-label">5) ¿Qué tipo de violencia física ha recibido y/o presenciado?</label>
+            <label class="form-label">3.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
+            <div class="col-10 ">
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp1_1_b_c" class="col-5 col-form-label">Cargo :</label>
+                    <div class="col-7">
+                        <input name="respuesta1_1_b_cargo" wire:model.lazy="respuesta1_1_b_cargo" type="text"
+                            class="form-control" id="rp1_1_b_c">
+                        <div class="form-text text-danger">@error('respuesta1_1_b_cargo') {{$message}} @enderror</div>
+                    </div>
+                </div>
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp1_1_b_l" class="col-5 col-form-label">Centro Educativo :</label>
+                    <div class="col-7">
+                        <input name="respuesta1_1_b_lugar" wire:model.lazy="respuesta1_1_b_lugar" type="text"
+                            class="form-control" id="rp1_1_b_l">
+                        <div class="form-text text-danger">@error('respuesta1_1_b_lugar') {{$message}} @enderror</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @if ($respuestas['respuesta1_1'] === 'c')
+        <div class="mb-3">
+            <label class="form-label">3.1.1) Precisar el parentesco que mantiene con la víctima, que le permitió tomar
+                conocimiento de los hechos que denuncia:</label>
+            <div class="col-10 ">
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp1_1_c_r" class="col-5 col-form-label">Parentesco con la víctima :</label>
+                    <div class="col-7">
+                        <input name="respuesta1_1_c_relacion" wire:model.lazy="respuesta1_1_c_relacion" type="text"
+                            class="form-control" id="rp1_1_c_r">
+                        <div class="form-text text-danger">@error('respuesta1_1_c_relacion') {{$message}} @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @if ($respuestas['respuesta1_1'] === 'd')
+        <div class="mb-3">
+            <label class="form-label">3.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
+                conocimiento de los hechos que denuncia:</label>
+            <div class="col-10 ">
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp1_1_d_r" class="col-5 col-form-label">Relación con la víctima :</label>
+                    <div class="col-7">
+                        <input name="respuesta1_1_c_relacion" wire:model.lazy="respuesta1_1_d_relacion" type="text"
+                            class="form-control" id="rp1_1_d_r">
+                        <div class="form-text text-danger">@error('respuesta1_1_d_relacion') {{$message}} @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @endif
+        @if ($respuestas['respuesta2'] === 'si' || $respuestas['respuesta1'] === 'si')
+        <div class="mb-3">
+            <label class="form-label">4) ¿Qué tipo de violencia física ha recibido y/o presenciado?</label>
             <div class="form-text text-danger">@error('respuesta4') {{$message}} @enderror</div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
-                    value="Golpes, quemaduras, etc." id="rp4_opcion1">
+                    value="Golpes" id="rp4_opcion1">
                 <label class="form-check-label" for="rp4_opcion1">
-                    Golpes, quemaduras, etc.
+                    Golpes
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
-                    value="violación o abuso sexual" id="rp4_opcion2">
+                    value="Quemaduras" id="rp4_opcion2">
                 <label class="form-check-label" for="rp4_opcion2">
-                    violación o abuso sexual
+                    Quemaduras
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
-                    value="tortura" id="rp4_opcion3">
+                    value="violación o abuso sexual" id="rp4_opcion3">
                 <label class="form-check-label" for="rp4_opcion3">
-                    tortura
+                    Violación o abuso sexual
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
-                    value="trata de personas" id="rp4_opcion4">
+                    value="tortura" id="rp4_opcion4">
                 <label class="form-check-label" for="rp4_opcion4">
-                    trata de personas
+                    Tortura
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
-                    value="prostitución forzada" id="rp4_opcion5">
+                    value="trata de personas" id="rp4_opcion5">
                 <label class="form-check-label" for="rp4_opcion5">
-                    prostitución forzada
+                    Trata de personas
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
-                    value="secuestro" id="rp4_opcion6">
+                    value="prostitución forzada" id="rp4_opcion6">
                 <label class="form-check-label" for="rp4_opcion6">
-                    secuestro
+                    Prostitución forzada
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4" value="otro"
-                    id="rp4_opcion7">
+                <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
+                    value="secuestro" id="rp4_opcion7">
                 <label class="form-check-label" for="rp4_opcion7">
-                    otro
+                    Secuestro
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
+                    value="otro" id="rp4_opcion8">
+                <label class="form-check-label d-flex" for="rp4_opcion8">
+                    Otro
+                    @if (in_array('otro',$respuestas['respuesta4']))
+                    <div class="d-flex flex-column mx-5">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" wire:model.lazy="rp4otro">
+                        </div>
+                        <div class="form-text text-danger">@error('rp4otro') {{$message}} @enderror</div>
+                    </div>
+                    @endif
                 </label>
             </div>
         </div>
+        @endif
         <div class="mb-3">
-            <label class="form-label">6) ¿Ha tomado conocimiento de un acto de violencia psicologica a otra
+            <label class="form-label">5) ¿Ha tomado conocimiento de un acto de violencia psicologica contra otra
                 persona?</label>
             <div class="form-check">
-                <input @click="toggleActive2" class="form-check-input" type="radio" name="respuesta5"
-                    wire:model.lazy="respuesta5" value="si" id="rp5_opcion1">
+                <input class="form-check-input" type="radio" name="respuesta5" wire:model.lazy="respuesta5" value="si"
+                    id="rp5_opcion1">
                 <label class="form-check-label" for="rp5_opcion1">
                     Si
                 </label>
             </div>
             <div class="form-check">
-                <input @click="toggleActive2" class="form-check-input" type="radio" name="respuesta5"
-                    wire:model.lazy="respuesta5" value="no" id="rp5_opcion2">
+                <input class="form-check-input" type="radio" name="respuesta5" wire:model.lazy="respuesta5" value="no"
+                    id="rp5_opcion2">
                 <label class="form-check-label" for="rp5_opcion2">
                     No
                 </label>
             </div>
             <div class="form-text text-danger">@error('respuesta5') {{$message}} @enderror</div>
         </div>
-        <template x-if="active2">
-            <div class="mb-3">
-                <label class="form-label">6.1) He tomado conocimiento de actos de violencia psicologica en mi condición
-                    de:</label>
-                <div class="form-check">
-                    <input @click="toggleActive3" class="form-check-input" type="radio" name="respuesta5_1"
-                        x-model="respuesta5_1" value="a" id="rp5_1_opcion1">
-                    <label class="form-check-label" for="rp5_1_opcion1">
-                        Personal de Salud
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input @click="toggleActive3" class="form-check-input" type="radio" name="respuesta5_1"
-                        x-model="respuesta5_1" value="b" id="rp5_1_opcion2">
-                    <label class="form-check-label" for="rp5_1_opcion2">
-                        Personal de Educación
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input @click="toggleActive3" class="form-check-input" type="radio" name="respuesta5_1"
-                        x-model="respuesta5_1" value="c" id="rp5_1_opcion3">
-                    <label class="form-check-label" for="rp5_1_opcion3">
-                        Otro
-                    </label>
-                </div>
-                <div class="form-text text-danger">@error('respuesta5_1') {{$message}} @enderror</div>
-            </div>
-        </template>
-        <template x-if="active2a">
-            <div class="mb-3">
-                <label class="form-label">6.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
-                <div class="col-10 ">
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp5_1_a_c" class="col-5 col-form-label">Cargo :</label>
-                        <div class="col-7">
-                            <input name="respuesta5_1_a_cargo" x-model="respuesta5_1_a_cargo" type="text"
-                                class="form-control" id="rp5_1_a_c">
-                            <div class="form-text text-danger">@error('respuesta5_1_a_cargo') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp5_1_a_l" class="col-5 col-form-label">Centro de Salud :</label>
-                        <div class="col-7">
-                            <input name="respuesta5_1_a_lugar" x-model="respuesta5_1_a_lugar" type="text"
-                                class="form-control" id="rp5_1_a_l">
-                            <div class="form-text text-danger">@error('respuesta5_1_a_lugar') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
-        <template x-if="active2b">
-            <div class="mb-3">
-                <label class="form-label">6.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
-                <div class="col-10 ">
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp5_1_b_c" class="col-5 col-form-label">Cargo :</label>
-                        <div class="col-7">
-                            <input name="respuesta5_1_b_cargo" x-model="respuesta5_1_b_cargo" type="text"
-                                class="form-control" id="rp5_1_b_c">
-                            <div class="form-text text-danger">@error('respuesta5_1_b_cargo') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp5_1_b_l" class="col-5 col-form-label">Centro Educativo :</label>
-                        <div class="col-7">
-                            <input name="respuesta5_1_b_lugar" x-model="respuesta5_1_b_lugar" type="text"
-                                class="form-control" id="rp5_1_b_l">
-                            <div class="form-text text-danger">@error('respuesta5_1_b_lugar') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
-        <template x-if="active2c">
-            <div class="mb-3">
-                <label class="form-label">6.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
-                    conocimiento de los hechos que denuncia:</label>
-                <div class="col-10 ">
-                    <div class="form-group row my-2 align-items-center">
-                        <label for="rp5_1_c_r" class="col-5 col-form-label">Relación con la víctima :</label>
-                        <div class="col-7">
-                            <input name="respuesta5_1_c_relacion" x-model="respuesta5_1_c_relacion" type="text"
-                                class="form-control" id="rp5_1_c_r">
-                            <div class="form-text text-danger">@error('respuesta5_1_c_relacion') {{$message}} @enderror</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
+        @if ($respuestas['respuesta5'] === 'si')
         <div class="mb-3">
-            <label class="form-label">7) ¿Qué tipo de violencia psicológica ha recibido y/o presenciado?</label>
+            <label class="form-label">5.1) He tomado conocimiento de actos de violencia psicologica en mi condición
+                de:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta5_1" wire:model.lazy="respuesta5_1"
+                    value="a" id="rp5_1_opcion1">
+                <label class="form-check-label" for="rp5_1_opcion1">
+                    Personal de Salud
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta5_1" wire:model.lazy="respuesta5_1"
+                    value="b" id="rp5_1_opcion2">
+                <label class="form-check-label" for="rp5_1_opcion2">
+                    Personal de Educación
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta5_1" wire:model.lazy="respuesta5_1"
+                    value="c" id="rp5_1_opcion3">
+                <label class="form-check-label" for="rp5_1_opcion3">
+                    Relación de Parentesco
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta5_1" wire:model.lazy="respuesta5_1"
+                    value="d" id="rp5_1_opcion4">
+                <label class="form-check-label" for="rp5_1_opcion4">
+                    Otro
+                </label>
+            </div>
+            <div class="form-text text-danger">@error('respuesta5_1') {{$message}} @enderror</div>
+        </div>
+        @endif
+        @if ($respuestas['respuesta5_1'] === 'a')
+        <div class="mb-3">
+            <label class="form-label">5.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
+            <div class="col-10 ">
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp5_1_a_c" class="col-5 col-form-label">Cargo :</label>
+                    <div class="col-7">
+                        <input name="respuesta5_1_a_cargo" wire:model.lazy="respuesta5_1_a_cargo" type="text"
+                            class="form-control" id="rp5_1_a_c">
+                        <div class="form-text text-danger">@error('respuesta5_1_a_cargo') {{$message}} @enderror</div>
+                    </div>
+                </div>
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp5_1_a_l" class="col-5 col-form-label">Centro de Salud :</label>
+                    <div class="col-7">
+                        <input name="respuesta5_1_a_lugar" wire:model.lazy="respuesta5_1_a_lugar" type="text"
+                            class="form-control" id="rp5_1_a_l">
+                        <div class="form-text text-danger">@error('respuesta5_1_a_lugar') {{$message}} @enderror</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @if ($respuestas['respuesta5_1'] === 'b')
+        <div class="mb-3">
+            <label class="form-label">5.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
+            <div class="col-10 ">
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp5_1_b_c" class="col-5 col-form-label">Cargo :</label>
+                    <div class="col-7">
+                        <input name="respuesta5_1_b_cargo" wire:model.lazy="respuesta5_1_b_cargo" type="text"
+                            class="form-control" id="rp5_1_b_c">
+                        <div class="form-text text-danger">@error('respuesta5_1_b_cargo') {{$message}} @enderror</div>
+                    </div>
+                </div>
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp5_1_b_l" class="col-5 col-form-label">Centro Educativo :</label>
+                    <div class="col-7">
+                        <input name="respuesta5_1_b_lugar" wire:model.lazy="respuesta5_1_b_lugar" type="text"
+                            class="form-control" id="rp5_1_b_l">
+                        <div class="form-text text-danger">@error('respuesta5_1_b_lugar') {{$message}} @enderror</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @if ($respuestas['respuesta5_1'] === 'c')
+        <div class="mb-3">
+            <label class="form-label">5.1.1) Precisar la relación de parentesco que mantiene con la víctima, que le
+                permitió tomar
+                conocimiento de los hechos que denuncia:</label>
+            <div class="col-10 ">
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp5_1_c_r" class="col-5 col-form-label">Parentesco con la víctima :</label>
+                    <div class="col-7">
+                        <input name="respuesta5_1_c_relacion" wire:model.lazy="respuesta5_1_c_relacion" type="text"
+                            class="form-control" id="rp5_1_c_r">
+                        <div class="form-text text-danger">@error('respuesta5_1_c_relacion') {{$message}} @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @if ($respuestas['respuesta5_1'] === 'd')
+        <div class="mb-3">
+            <label class="form-label">5.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
+                conocimiento de los hechos que denuncia:</label>
+            <div class="col-10 ">
+                <div class="form-group row my-2 align-items-center">
+                    <label for="rp5_1_d_r" class="col-5 col-form-label">Relación con la víctima :</label>
+                    <div class="col-7">
+                        <input name="respuesta5_1_d_relacion" wire:model.lazy="respuesta5_1_d_relacion" type="text"
+                            class="form-control" id="rp5_1_d_r">
+                        <div class="form-text text-danger">@error('respuesta5_1_d_relacion') {{$message}} @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @if ($respuestas['respuesta5'] === 'si' || $respuestas['respuesta6'] === 'si')
+        <div class="mb-3">
+            <label class="form-label">6) ¿Qué tipo de violencia psicológica ha recibido y/o presenciado?</label>
             <div class="form-text text-danger">@error('respuesta7') {{$message}} @enderror</div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta7[]" wire:model.lazy="respuesta7"
@@ -366,60 +433,67 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="respuesta7[]" wire:model.lazy="respuesta7" value="otro"
-                    id="rp7_opcion8">
-                <label class="form-check-label" for="rp7_opcion8">
-                    otro
+                <input class="form-check-input" type="checkbox" name="respuesta7[]" wire:model.lazy="respuesta7"
+                    value="otro" id="rp7_opcion8">
+                <label class="form-check-label d-flex" for="rp7_opcion8">
+                    Otro
+                    @if (in_array('otro',$respuestas['respuesta7']))
+                    <div class="d-flex flex-column mx-5">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" wire:model.lazy="rp7otro">
+                        </div>
+                        <div class="form-text text-danger">@error('rp7otro') {{$message}} @enderror</div>
+                    </div>
+                    @endif
                 </label>
             </div>
         </div>
+        @endif
+        @if ($respuestas['respuesta5'] === 'si' ||
+        $respuestas['respuesta6'] === 'si' ||
+        $respuestas['respuesta2'] === 'si' ||
+        $respuestas['respuesta1'] === 'si')
         <div class="mb-3">
-            <label class="form-label">8) Precise el nombre, apellido y edad de la persona agraviada (De ser USTED,
-                complete
-                con
-                sus datos)</label>
+            <label class="form-label">7) Fecha de la agresion o de inicio de las agresiones:</label>
             <div class="col-10 ">
-                <div class="form-group row my-2 align-items-center">
-                    <label for="rp8_n" class="col-5 col-form-label">Nombre y Apellido :</label>
-                    <div class="col-7">
-                        <input name="respuesta8_nombre" wire:model.lazy="respuesta8_nombre" type="text" class="form-control"
-                            id="rp8_n">
-                        <div class="form-text text-danger">@error('respuesta8_nombre') {{$message}} @enderror</div>
-                    </div>
-                </div>
-                <div class="form-group row my-2 align-items-center">
-                    <label for="rp8_e" class="col-5 col-form-label">Edad :</label>
-                    <div class="col-7">
-                        <input name="respuesta8_edad" wire:model.lazy="respuesta8_edad" type="number" step="0"
-                            class="form-control" id="rp8_e">
-                        <div class="form-text text-danger">@error('respuesta8_edad') {{$message}} @enderror</div>
-                    </div>
-                </div>
+                <input type="date" class="form-control" name="respuesta3" wire:model.lazy="respuesta3">
+                <div class="form-text text-danger">@error('respuesta3') {{$message}} @enderror</div>
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label">9) Precise el nombre, apellido y edad de la persona agresora</label>
+            <label class="form-label">8) Precise el nombre, apellido y edad de la persona o personas agraviadas 
+                (De ser USTED, complete con sus datos) </label>
             <div class="col-10 ">
-                <div class="form-group row my-2 align-items-center">
-                    <label for="rp9_n" class="col-5 col-form-label">Nombre y Apellido :</label>
-                    <div class="col-7">
-                        <input name="respuesta9_nombre" wire:model.lazy="respuesta9_nombre" type="text" class="form-control"
-                            id="rp9_n">
-                        <div class="form-text text-danger">@error('respuesta9_nombre') {{$message}} @enderror</div>
-                    </div>
-                </div>
-                <div class="form-group row my-2 align-items-center">
-                    <label for="rp9_e" class="col-5 col-form-label">Edad :</label>
-                    <div class="col-7">
-                        <input name="respuesta9_edad" wire:model.lazy="respuesta9_edad" type="number" step="0"
-                            class="form-control" id="rp9_e">
-                        <div class="form-text text-danger">@error('respuesta9_edad') {{$message}} @enderror</div>
-                    </div>
-                </div>
+                {{$agredidos}}
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label">10) ¿Qué relación tiene la persona agraviada con la persona agresora?</label>
+            <label class="form-label">9) Conoce el nombre, apellidos y edad de la persona agresora</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta9" wire:model.lazy="respuesta9" value="si"
+                    id="rp9_opcion1">
+                <label class="form-check-label" for="rp9_opcion1">
+                    Si
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta9" wire:model.lazy="respuesta9" value="no"
+                    id="rp9_opcion2">
+                <label class="form-check-label" for="rp9_opcion2">
+                    No
+                </label>
+            </div>
+            <div class="form-text text-danger">@error('respuesta9') {{$message}} @enderror</div>
+        </div>
+        @if ($respuestas['respuesta9'] === 'si')
+        <div class="mb-3">
+            <label class="form-label">9.1) Precise el nombre, apellido y edad de la persona o personas agresoras</label>
+            <div class="col-10 ">
+                {{$agresores}}
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">9.2) ¿Qué relación tiene la persona agraviada con la persona agresora?</label>
             <div class="form-text text-danger">@error('respuesta10') {{$message}} @enderror</div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta10" wire:model.lazy="respuesta10"
@@ -450,8 +524,8 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="respuesta10" wire:model.lazy="respuesta10" value="Pareja"
-                    id="rp10_opcion5">
+                <input class="form-check-input" type="radio" name="respuesta10" wire:model.lazy="respuesta10"
+                    value="Pareja" id="rp10_opcion5">
                 <label class="form-check-label" for="rp10_opcion5">
                     Pareja
                 </label>
@@ -518,88 +592,37 @@
                 </label>
             </div>
         </div>
+        @endif
         <div class="mb-3">
-            <label class="form-label">11) Precise en qué lugar ocurrieron los hechos.</label>
+            <label class="form-label">10) Precise en qué lugar o lugares ocurrieron los hechos.</label>
             <div class="col-10 ">
-                <div class="form-group row my-2 align-items-center">
-                    <label for="rp11_p" class="col-5 col-form-label">Provincia :</label>
-                    <div class="col-7">
-                        <input name="respuesta11_provincia" wire:model.lazy="respuesta11_provincia" type="text"
-                            class="form-control" id="rp11_p">
-                        <div class="form-text text-danger">@error('respuesta11_provincia') {{$message}} @enderror</div>
-                    </div>
-                </div>
-                <div class="form-group row my-2 align-items-center">
-                    <label for="rp11_dis" class="col-5 col-form-label">Distrito :</label>
-                    <div class="col-7">
-                        <input name="respuesta11_distrito" wire:model.lazy="respuesta11_distrito" type="text"
-                            class="form-control" id="rp11_dis">
-                        <div class="form-text text-danger">@error('respuesta11_distrito') {{$message}} @enderror</div>
-                    </div>
-                </div>
-                <div class="form-group row my-2 align-items-center">
-                    <label for="rp11_dir" class="col-5 col-form-label">Dirección :</label>
-                    <div class="col-7">
-                        <input name="respuesta11_direccion" wire:model.lazy="respuesta11_direccion" type="text"
-                            class="form-control" id="rp11_dir">
-                        <div class="form-text text-danger">@error('respuesta11_direccion') {{$message}} @enderror</div>
-                    </div>
-                </div>
+                {{$lugares}}
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label">12) Precise cómo ocurrieron los hechos</label>
+            <label class="form-label">11) Precise cómo ocurrieron los hechos</label>
             <div class="col-10 ">
-                <div class="form-text">Ejemplo: El día X me encontraba en mi domicilio, aproximadamente a las 9pm
+                <div class="form-text">
+                    Ejemplo 1: El día 4 de mayo me encontraba en mi domicilio, aproximadamente a las 9pm
                     se presentó el padre de mis hijos, ingresó a mi domicilio sin mi autorización, me
-                    profirió insultos y me agredió físicamente, golpeándome el rostro con el puño.</div>
+                    profirió insultos y me agredió físicamente, golpeándome el rostro con el puño.
+                    <br><br>
+                    Ejemplo 2: El día 10 de diciembre me encontraba en mi domicilio, cuando presencie al esposo de mi
+                    vecina, la estaba esperando en la puerta de su casa y cuando ella llego la agredió con puños,
+                    patadas e insultos.
+                </div>
                 <textarea class="my-2 form-control" name="respuesta12" wire:model.lazy="respuesta12" id="rp12" cols="30"
                     rows="4"></textarea>
                 <div class="form-text text-danger">@error('respuesta12') {{$message}} @enderror</div>
             </div>
         </div>
-        <div class="mb-3">
-            <b class="form-label">Anexos:</b>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" wire:model.lazy='confirmacion_anexos'
+              name="confirmacion_anexos">
+            <label class="form-check-label">Me comprometo a llevar los documentos que sustentan la presente de forma
+              fisica
+              al despacho</label>
         </div>
-        <div class="mb-3">
-            <label class="form-label">En caso quiera adjuntar otros anexos.</label>
-            <div class="col-10 ">
-                <div class="form-text">Ejemplo: fotografías de la relación que mantuvo con el / la denunciado /a,
-                    certificado de
-                    matrimonio, certificado de nacimiento de sus hijos, u otros documentos que demuestren la relación
-                    con el
-                    denunciado. O si cuenta con documentos / foto /filmación de lo que ocurrió el día de los hechos,
-                    dicha
-                    documentación debe adjuntarse a la denuncia.</div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" wire:model.lazy='confirmacion_anexos' name="confirmacion_anexos">
-                    <label class="form-check-label">Me comprometo a llevar los documentos que sustentan la presente de forma fisica al despacho</label>
-                </div>
-                <div class="form-group row my-2 pb-3 align-items-center">
-                    <label for="anexo1_nombre" class="col-5 col-form-label">Documento que adjunta:</label>
-                    <div class="col-7">
-                        <input name="anexo1_nombre" wire:model.lazy="anexo1_nombre" type="text" class="form-control"
-                            id="anexo1_nombre">
-                    </div>
-                </div>
-                <div class="form-group row my-2 pb-3 align-items-center">
-                    <label for="anexo2_nombre" class="col-5 col-form-label">Documento que adjunta:</label>
-                    <div class="col-7">
-                        <input name="anexo2_nombre" wire:model.lazy="anexo2_nombre" type="text" class="form-control"
-                            id="anexo2_nombre">
-                    </div>
-                </div>
-                {{-- <div class="form-group row my-2 pb-3 align-items-center">
-                    <label for="anexo3_nombre" class="col-5 col-form-label">Documento que adjunta:</label>
-                    <div class="col-7">
-                        <input name="anexo3_nombre" type="text" class="form-control" id="anexo3_nombre">
-                    </div>
-                    <label for="anexo3_archivo" class="col-5 col-form-label">Documento:</label>
-                    <div class="col-7">
-                        <input name="anexo3_archivo" type="file" class="form-control" id="anexo3_archivo">
-                    </div>
-                </div> --}}
-            </div>
-        </div>
+        @endif
     </div>
 </div>

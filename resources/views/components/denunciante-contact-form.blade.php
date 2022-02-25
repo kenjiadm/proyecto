@@ -7,7 +7,7 @@
     <div class="form-text text-danger">@error('name_denunciante') {{$message}} @enderror</div>
   </div>
   <div class="mb-3">
-    <label class="form-label">Apellido del Denunciante</label>
+    <label class="form-label">Apellidos del Denunciante</label>
     <input type="text" class="form-control" wire:model.lazy='lastname_denunciante' name="lastname_denunciante">
     <div class="form-text text-danger">@error('lastname_denunciante') {{$message}} @enderror</div>
   </div>
