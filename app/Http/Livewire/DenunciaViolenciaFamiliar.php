@@ -104,7 +104,6 @@ class DenunciaViolenciaFamiliar extends Component
 
     public function mount()
     {
-        $this->anexo_nombre = [0 => ''];
         $this->currentCount = 1;
         $this->agresor_rows = 1;
         $this->agredido_rows = 1;
@@ -153,23 +152,13 @@ class DenunciaViolenciaFamiliar extends Component
         $this->emit('foo');
     }
 
-    public function increaseAnexos(){
-        if(count($this->anexo_nombre) === 4) return;
-        array_push($this->anexo_nombre,'');
-    }
-
-    public function decreaseAnexos($index){
-        if(count($this->anexo_nombre) === 1) return;
-        array_splice($this->anexo_nombre,$index,1);
-    }
-
     public function test(){
         $agresores = '';
         foreach ($this->agresores as $key => $agresor) {
             if($key !== 0){
                 $agresores .= ',';
             }
-            $agresores .= "{$agresor['nombre']} {$agresor['apellido']} ({$agresor['edad']})";
+            $agresores .= "{$agresor['nombre']} {$agresor['apellidos']} ({$agresor['edad']})";
         }
         dd($agresores);
     }
@@ -212,9 +201,16 @@ class DenunciaViolenciaFamiliar extends Component
         if($this->respuesta9 === 'si'){
             foreach ($this->agresores as $key => $agresor) {
                 if($key !== 0){
-                    $agresores .= ', ';
+                    if(count($this->agresores) === ($key + 1)){
+                        $agresores .= ' y ';
+                    } else {
+                        $agresores .= ', ';
+                    }     
                 }
-                $agresores .= "{$agresor['nombre']} {$agresor['apellido']} ({$agresor['edad']})";
+                $agresores .= "{$agresor['nombre']} {$agresor['apellidos']}";
+                if (!empty($agresor['edad'])) {
+                    $agresores .= "({$agresor['edad']})";
+                }
             }
             $templateCarta->setValue('respuesta10', ", con quien tiene una relación de {$this->respuesta10}");
         }
@@ -228,9 +224,16 @@ class DenunciaViolenciaFamiliar extends Component
         $agredidos = '';
         foreach ($this->agredidos as $key => $agredido) {
             if($key !== 0){
-                $agredidos .= ', ';
+                if(count($this->agredidos) === ($key + 1)){
+                    $agredidos .= ' y ';
+                } else {
+                    $agredidos .= ', ';
+                }  
             }
-            $agredidos .= "{$agredido['nombre']} {$agredido['apellido']} ({$agredido['edad']})";
+            $agredidos .= "{$agredido['nombre']} {$agredido['apellidos']}";
+            if (!empty($agredido['edad'])) {
+                $agredidos .= "({$agredido['edad']})";
+            }
         }
         $templateCarta->setValue('agredidos', $agredidos);
 
@@ -244,7 +247,7 @@ class DenunciaViolenciaFamiliar extends Component
         $templateCarta->setValue('lugares', $lugares);
 
         $check = 0;
-        if ($this->respuesta1 === 'si' || $this->repuesta2 === 'si') {
+        if ($this->respuesta1 === 'si' || $this->respuesta2 === 'si') {
             if (sizeof($this->respuesta4) !== 0) {
                 $check++;
                 $respuesta4 = array_map(fn($value) => $value === 'otro' ? $this->rp4otro : $value , $this->respuesta4);
@@ -361,19 +364,19 @@ class DenunciaViolenciaFamiliar extends Component
                 'respuesta9' => 'required',
                 'respuesta10' => 'required_if:respuesta9,si',
                 'agresores.*.nombre' => 'string|max:300|filled|distinct:strict',
-                'agresores.*.apellido' => 'string|max:300|filled|distinct:strict',
+                'agresores.*.apellidos' => 'string|max:300|filled|distinct:strict',
                 'agresores.0.nombre' => 'string|max:300|required_if:respuesta9,si',
-                'agresores.0.apellido' => 'string|max:300|required_if:respuesta9,si',
+                'agresores.0.apellidos' => 'string|max:300|required_if:respuesta9,si',
                 'agredidos.*.nombre' => 'string|max:300|filled|distinct:strict',
-                'agredidos.*.apellido' => 'string|max:300|filled|distinct:strict',
+                'agredidos.*.apellidos' => 'string|max:300|filled|distinct:strict',
                 'agredidos.0.nombre' => 'string|max:300|required',
-                'agredidos.0.apellido' => 'string|max:300|required',
+                'agredidos.0.apellidos' => 'string|max:300|required',
                 // 'lugares.*.direccion' => 'string|max:500|filled|distinct:strict',
                 // 'lugares.*.distrito' => 'string|max:300|filled|distinct:strict',
                 // 'lugares.*.provincia' => 'string|max:300|filled|distinct:strict',
-                // 'lugares.0.direccion' => 'string|max:500|required',
-                // 'lugares.0.distrito' => 'string|max:300|required',
-                // 'lugares.0.provincia' => 'string|max:300|required',
+                'lugares.0.direccion' => 'string|max:500|required',
+                'lugares.0.distrito' => 'string|max:300|required',
+                'lugares.0.provincia' => 'string|max:300|required',
                 'respuesta12' => 'required',
             ];
             

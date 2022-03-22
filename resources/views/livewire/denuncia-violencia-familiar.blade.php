@@ -51,7 +51,7 @@
                     </div>
                   </x-slot>
                   <x-slot name="lugares">
-                    <x-multiple-inputs-table
+                    {{-- <x-multiple-inputs-table
                       tag="lugares"
                       :headers="$headers_lugares"
                       :inputRows="$lugar_rows"
@@ -60,7 +60,31 @@
                     <div class="d-flex justify-content-end">
                       <button type="button" class="btn btn-success" wire:click="increase('lugar')">Añadir</button>
                       <button type="button" class="btn btn-danger" wire:click="decrease('lugar')">Quitar</button>
-                    </div>
+                    </div> --}}
+                    <div class="form-group row my-2 align-items-center">
+                      <label  class="col-5 col-form-label">Provincia :</label>
+                      <div class="col-7">
+                          <input name="lugares.0.provincia" wire:model.lazy="lugares.0.provincia" type="text"
+                              class="form-control">
+                          <div class="form-text text-danger">@error('lugares.0.provincia') {{$message}} @enderror</div>
+                      </div>
+                  </div>
+                  <div class="form-group row my-2 align-items-center">
+                      <label  class="col-5 col-form-label">Distrito :</label>
+                      <div class="col-7">
+                          <input name="lugares.0.distrito" wire:model.lazy="lugares.0.distrito" type="text"
+                              class="form-control" >
+                          <div class="form-text text-danger">@error('lugares.0.distrito') {{$message}} @enderror</div>
+                      </div>
+                  </div>
+                  <div class="form-group row my-2 align-items-center">
+                      <label  class="col-5 col-form-label">Dirección :</label>
+                      <div class="col-7">
+                          <input name="lugares.0.direccion" wire:model.lazy="lugares.0.direccion" type="text"
+                              class="form-control" >
+                          <div class="form-text text-danger">@error('lugares.0.direccion') {{$message}} @enderror</div>
+                      </div>
+                  </div>
                   </x-slot>
                 </x-denuncia-violencia-familiar-form>
                 <div class="w-100 d-flex justify-content-around">

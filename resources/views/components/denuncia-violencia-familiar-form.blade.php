@@ -297,7 +297,6 @@
             </div>
             <div class="form-text text-danger">@error('respuesta5_1') {{$message}} @enderror</div>
         </div>
-        @endif
         @if ($respuestas['respuesta5_1'] === 'a')
         <div class="mb-3">
             <label class="form-label">5.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
@@ -378,6 +377,7 @@
                 </div>
             </div>
         </div>
+        @endif
         @endif
         @if ($respuestas['respuesta5'] === 'si' || $respuestas['respuesta6'] === 'si')
         <div class="mb-3">
