@@ -454,7 +454,8 @@
         $respuestas['respuesta2'] === 'si' ||
         $respuestas['respuesta1'] === 'si')
         <div class="mb-3">
-            <label class="form-label">7) Fecha de la agresion o de inicio de las agresiones:</label>
+            <label class="form-label">7) Puede precisar la fecha de la agresión o la fecha aproximada en la que se produjeron
+                las agresiones :</label>
             <div class="col-10 ">
                 <input type="date" class="form-control" name="respuesta3" wire:model.lazy="respuesta3">
                 <div class="form-text text-danger">@error('respuesta3') {{$message}} @enderror</div>
@@ -600,9 +601,10 @@
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label">11) Precise cómo ocurrieron los hechos</label>
+            <label class="form-label">11)
+                 De ser posible detalle: día, hora y circunstancias en que se produjeron los hechos.</label>
             <div class="col-10 ">
-                <div class="form-text">
+                {{-- <div class="form-text">
                     Ejemplo 1: El día 4 de mayo me encontraba en mi domicilio, aproximadamente a las 9pm
                     se presentó el padre de mis hijos, ingresó a mi domicilio sin mi autorización, me
                     profirió insultos y me agredió físicamente, golpeándome el rostro con el puño.
@@ -610,7 +612,7 @@
                     Ejemplo 2: El día 10 de diciembre me encontraba en mi domicilio, cuando presencie al esposo de mi
                     vecina, la estaba esperando en la puerta de su casa y cuando ella llego la agredió con puños,
                     patadas e insultos.
-                </div>
+                </div> --}}
                 <textarea class="my-2 form-control" name="respuesta12" wire:model.lazy="respuesta12" id="rp12" cols="30"
                     rows="4"></textarea>
                 <div class="form-text text-danger">@error('respuesta12') {{$message}} @enderror</div>

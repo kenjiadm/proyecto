@@ -54,7 +54,7 @@ class DenunciaViolenciaFamiliar extends Component
 
     public $headers = [
         'nombre',
-        'apellido',
+        'apellidos',
         'edad'
     ];
 
@@ -362,22 +362,18 @@ class DenunciaViolenciaFamiliar extends Component
                 'respuesta10' => 'required_if:respuesta9,si',
                 'agresores.*.nombre' => 'string|max:300|filled|distinct:strict',
                 'agresores.*.apellido' => 'string|max:300|filled|distinct:strict',
-                'agresores.*.edad' => 'numeric|filled|distinct:strict',
                 'agresores.0.nombre' => 'string|max:300|required_if:respuesta9,si',
                 'agresores.0.apellido' => 'string|max:300|required_if:respuesta9,si',
-                'agresores.0.edad' => 'numeric|required_if:respuesta9,si',
                 'agredidos.*.nombre' => 'string|max:300|filled|distinct:strict',
                 'agredidos.*.apellido' => 'string|max:300|filled|distinct:strict',
-                'agredidos.*.edad' => 'numeric|filled|distinct:strict',
                 'agredidos.0.nombre' => 'string|max:300|required',
                 'agredidos.0.apellido' => 'string|max:300|required',
-                'agredidos.0.edad' => 'numeric|required',
-                'lugares.*.direccion' => 'string|max:500|filled|distinct:strict',
-                'lugares.*.distrito' => 'string|max:300|filled|distinct:strict',
-                'lugares.*.provincia' => 'string|max:300|filled|distinct:strict',
-                'lugares.0.direccion' => 'string|max:500|required',
-                'lugares.0.distrito' => 'string|max:300|required',
-                'lugares.0.provincia' => 'string|max:300|required',
+                // 'lugares.*.direccion' => 'string|max:500|filled|distinct:strict',
+                // 'lugares.*.distrito' => 'string|max:300|filled|distinct:strict',
+                // 'lugares.*.provincia' => 'string|max:300|filled|distinct:strict',
+                // 'lugares.0.direccion' => 'string|max:500|required',
+                // 'lugares.0.distrito' => 'string|max:300|required',
+                // 'lugares.0.provincia' => 'string|max:300|required',
                 'respuesta12' => 'required',
             ];
             

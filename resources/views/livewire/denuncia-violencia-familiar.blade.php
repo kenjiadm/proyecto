@@ -27,8 +27,15 @@
                     >
                     </x-multiple-inputs-table>
                     <div class="d-flex justify-content-end">
+                      <div class="d-flex flex-column">
+                      <div>
+                        Si es más de una persona haz click en "Añadir"
+                      </div>
+                      <div class="d-flex justify-content-end">
                       <button type="button" class="btn btn-success" wire:click="increase('agredido')">Añadir</button>
                       <button type="button" class="btn btn-danger" wire:click="decrease('agredido')">Quitar</button>
+                      </div>
+                      </div>
                     </div>
                   </x-slot>
                   <x-slot name="agresores">
