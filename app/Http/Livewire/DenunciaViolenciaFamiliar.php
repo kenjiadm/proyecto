@@ -353,7 +353,7 @@ class DenunciaViolenciaFamiliar extends Component
             $valiArray = [
                 'respuesta2' => 'required',
                 'respuesta6' => 'required',
-                'respuesta1' => 'required',
+                'respuesta1' => 'required_if:respuesta2,no',
                 'respuesta1_1' => 'required_if:respuesta1,si',
                 'respuesta1_1_a_cargo' => 'required_if:respuesta1_1,a',
                 'respuesta1_1_a_lugar' => 'required_if:respuesta1_1,a',
@@ -362,7 +362,7 @@ class DenunciaViolenciaFamiliar extends Component
                 'respuesta1_1_c_relacion' => 'required_if:respuesta1_1,c',
                 'respuesta1_1_d_relacion' => 'required_if:respuesta1_1,d',
                 'respuesta3' => 'required|before:tomorrow',
-                'respuesta5' => 'required',
+                'respuesta5' => 'required_if:respuesta6,no',
                 'respuesta5_1' => 'required_if:respuesta5,si',
                 'respuesta5_1_a_cargo' => 'required_if:respuesta5_1,a',
                 'respuesta5_1_a_lugar' => 'required_if:respuesta5_1,a',
