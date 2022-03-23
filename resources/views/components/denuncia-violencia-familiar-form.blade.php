@@ -22,26 +22,9 @@
             </div>
             <div class="form-text text-danger">@error('respuesta2') {{$message}} @enderror</div>
         </div>
+        @if ($respuestas['respuesta2'] === 'no')
         <div class="mb-3">
-            <label class="form-label">2) ¿Ha sufrido USTED violencia psicologica?</label>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="respuesta6" wire:model.lazy="respuesta6" value="si"
-                    id="rp6_opcion1">
-                <label class="form-check-label" for="rp6_opcion1">
-                    Si
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="respuesta6" wire:model.lazy="respuesta6" value="no"
-                    id="rp6_opcion2">
-                <label class="form-check-label" for="rp6_opcion2">
-                    No
-                </label>
-            </div>
-            <div class="form-text text-danger">@error('respuesta6') {{$message}} @enderror</div>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">3) ¿Ha tomado conocimiento de un acto de violencia fisica contra otra
+            <label class="form-label">1.1) ¿Ha tomado conocimiento de un acto de violencia fisica contra otra
                 persona?</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta1" wire:model.lazy="respuesta1" value="si"
@@ -61,7 +44,7 @@
         </div>
         @if ($respuestas['respuesta1'] === 'si')
         <div class="mb-3">
-            <label class="form-label">3.1) He tomado conocimiento de actos de violencia física en mi condición
+            <label class="form-label">1.1.1) He tomado conocimiento de actos de violencia física en mi condición
                 de:</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta1_1" wire:model.lazy="respuesta1_1"
@@ -95,7 +78,7 @@
         </div>
         @if ($respuestas['respuesta1_1'] === 'a')
         <div class="mb-3">
-            <label class="form-label">3.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
+            <label class="form-label">1.1.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
                     <label for="rp1_1_a_c" class="col-5 col-form-label">Cargo :</label>
@@ -118,7 +101,7 @@
         @endif
         @if ($respuestas['respuesta1_1'] === 'b')
         <div class="mb-3">
-            <label class="form-label">3.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
+            <label class="form-label">1.1.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
                     <label for="rp1_1_b_c" class="col-5 col-form-label">Cargo :</label>
@@ -141,7 +124,7 @@
         @endif
         @if ($respuestas['respuesta1_1'] === 'c')
         <div class="mb-3">
-            <label class="form-label">3.1.1) Precisar el parentesco que mantiene con la víctima, que le permitió tomar
+            <label class="form-label">1.1.1.1) Precisar el parentesco que mantiene con la víctima, que le permitió tomar
                 conocimiento de los hechos que denuncia:</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
@@ -158,7 +141,7 @@
         @endif
         @if ($respuestas['respuesta1_1'] === 'd')
         <div class="mb-3">
-            <label class="form-label">3.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
+            <label class="form-label">1.1.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
                 conocimiento de los hechos que denuncia:</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
@@ -174,9 +157,10 @@
         </div>
         @endif
         @endif
+        @endif
         @if ($respuestas['respuesta2'] === 'si' || $respuestas['respuesta1'] === 'si')
         <div class="mb-3">
-            <label class="form-label">4) ¿Qué tipo de violencia física ha recibido y/o presenciado?</label>
+            <label class="form-label">1.2) ¿Qué tipo de violencia física ha recibido y/o presenciado?</label>
             <div class="form-text text-danger">@error('respuesta4') {{$message}} @enderror</div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta4[]" wire:model.lazy="respuesta4"
@@ -245,7 +229,26 @@
         </div>
         @endif
         <div class="mb-3">
-            <label class="form-label">5) ¿Ha tomado conocimiento de un acto de violencia psicologica contra otra
+            <label class="form-label">2) ¿Ha sufrido USTED violencia psicologica?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta6" wire:model.lazy="respuesta6" value="si"
+                    id="rp6_opcion1">
+                <label class="form-check-label" for="rp6_opcion1">
+                    Si
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta6" wire:model.lazy="respuesta6" value="no"
+                    id="rp6_opcion2">
+                <label class="form-check-label" for="rp6_opcion2">
+                    No
+                </label>
+            </div>
+            <div class="form-text text-danger">@error('respuesta6') {{$message}} @enderror</div>
+        </div>
+        @if ($respuestas['respuesta6'] === 'no')
+        <div class="mb-3">
+            <label class="form-label">2.1) ¿Ha tomado conocimiento de un acto de violencia psicologica contra otra
                 persona?</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta5" wire:model.lazy="respuesta5" value="si"
@@ -265,7 +268,7 @@
         </div>
         @if ($respuestas['respuesta5'] === 'si')
         <div class="mb-3">
-            <label class="form-label">5.1) He tomado conocimiento de actos de violencia psicologica en mi condición
+            <label class="form-label">2.1.1) He tomado conocimiento de actos de violencia psicologica en mi condición
                 de:</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta5_1" wire:model.lazy="respuesta5_1"
@@ -299,7 +302,7 @@
         </div>
         @if ($respuestas['respuesta5_1'] === 'a')
         <div class="mb-3">
-            <label class="form-label">5.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
+            <label class="form-label">2.1.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
                     <label for="rp5_1_a_c" class="col-5 col-form-label">Cargo :</label>
@@ -322,7 +325,7 @@
         @endif
         @if ($respuestas['respuesta5_1'] === 'b')
         <div class="mb-3">
-            <label class="form-label">5.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
+            <label class="form-label">2.1.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
                     <label for="rp5_1_b_c" class="col-5 col-form-label">Cargo :</label>
@@ -345,7 +348,7 @@
         @endif
         @if ($respuestas['respuesta5_1'] === 'c')
         <div class="mb-3">
-            <label class="form-label">5.1.1) Precisar la relación de parentesco que mantiene con la víctima, que le
+            <label class="form-label">2.1.1.1) Precisar la relación de parentesco que mantiene con la víctima, que le
                 permitió tomar
                 conocimiento de los hechos que denuncia:</label>
             <div class="col-10 ">
@@ -363,7 +366,7 @@
         @endif
         @if ($respuestas['respuesta5_1'] === 'd')
         <div class="mb-3">
-            <label class="form-label">5.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
+            <label class="form-label">2.1.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
                 conocimiento de los hechos que denuncia:</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
@@ -379,9 +382,10 @@
         </div>
         @endif
         @endif
+        @endif
         @if ($respuestas['respuesta5'] === 'si' || $respuestas['respuesta6'] === 'si')
         <div class="mb-3">
-            <label class="form-label">6) ¿Qué tipo de violencia psicológica ha recibido y/o presenciado?</label>
+            <label class="form-label">2.2) ¿Qué tipo de violencia psicológica ha recibido y/o presenciado?</label>
             <div class="form-text text-danger">@error('respuesta7') {{$message}} @enderror</div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="respuesta7[]" wire:model.lazy="respuesta7"
@@ -454,7 +458,7 @@
         $respuestas['respuesta2'] === 'si' ||
         $respuestas['respuesta1'] === 'si')
         <div class="mb-3">
-            <label class="form-label">7) Puede precisar la fecha de la agresión o la fecha aproximada en la que se produjeron
+            <label class="form-label">3) Puede precisar la fecha de la agresión o la fecha aproximada en la que se produjeron
                 las agresiones :</label>
             <div class="col-10 ">
                 <input type="date" class="form-control" name="respuesta3" wire:model.lazy="respuesta3">
@@ -462,14 +466,14 @@
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label">8) Precise el nombre, apellido y edad de la persona o personas agraviadas 
+            <label class="form-label">4) Precise los nombres y apellidos de la persona o personas agraviadas. El campo de edad puede quedar en blanco. 
                 (De ser USTED, complete con sus datos) </label>
             <div class="col-10 ">
                 {{$agredidos}}
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label">9) Conoce el nombre, apellidos y edad de la persona agresora</label>
+            <label class="form-label">5) Conoce los nombres y apellidos de la persona o personas agresoras</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta9" wire:model.lazy="respuesta9" value="si"
                     id="rp9_opcion1">
@@ -488,13 +492,14 @@
         </div>
         @if ($respuestas['respuesta9'] === 'si')
         <div class="mb-3">
-            <label class="form-label">9.1) Precise el nombre, apellido y edad de la persona o personas agresoras</label>
+            <label class="form-label">5.1) Precise los nombres y apellidos de la persona o personas agresoras</label>
             <div class="col-10 ">
                 {{$agresores}}
             </div>
         </div>
+        @endif
         <div class="mb-3">
-            <label class="form-label">9.2) ¿Qué relación tiene la persona agraviada con la persona agresora?</label>
+            <label class="form-label">6) ¿Qué relación tiene la persona agraviada con la persona agresora?</label>
             <div class="form-text text-danger">@error('respuesta10') {{$message}} @enderror</div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta10" wire:model.lazy="respuesta10"
@@ -571,7 +576,7 @@
                     value="parientes colaterales de los cónyuges y convivientes hasta el cuarto grado de consanguinidad y segundo de afinidad"
                     id="rp10_opcion11">
                 <label class="form-check-label" for="rp10_opcion11">
-                    parientes colaterales de los cónyuges y convivientes hasta el cuarto grado de consanguinidad y
+                    Parientes colaterales de los cónyuges y convivientes hasta el cuarto grado de consanguinidad y
                     segundo de
                     afinidad
                 </label>
@@ -581,7 +586,7 @@
                     value="quienes habitan en el mismo hogar, siempre que no medien relaciones contractuales o laborales"
                     id="rp10_opcion12">
                 <label class="form-check-label" for="rp10_opcion12">
-                    quienes habitan en el mismo hogar, siempre que no medien relaciones contractuales o laborales
+                    Quienes habitan en el mismo hogar, siempre que no medien relaciones contractuales o laborales
                 </label>
             </div>
             <div class="form-check">
@@ -589,20 +594,34 @@
                     value="quienes hayan procreado hijos en común, independientemente que convivan o no"
                     id="rp10_opcion13">
                 <label class="form-check-label" for="rp10_opcion13">
-                    quienes hayan procreado hijos en común, independientemente que convivan o no
+                    Quienes hayan procreado hijos en común, independientemente que convivan o no
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="respuesta10" wire:model.lazy="respuesta10"
+                    value="otro" id="rp10_opcion14">
+                <label class="form-check-label d-flex" for="rp10_opcion14">
+                    Otro
+                    @if ($respuestas['respuesta10'] === 'otro')
+                    <div class="d-flex flex-column mx-5">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" wire:model.lazy="rp10otro">
+                        </div>
+                        <div class="form-text text-danger">@error('rp10otro') {{$message}} @enderror</div>
+                    </div>
+                    @endif
                 </label>
             </div>
         </div>
-        @endif
         <div class="mb-3">
-            <label class="form-label">10) Precise en qué lugar o lugares ocurrieron los hechos.</label>
+            <label class="form-label">7) Precise en qué lugar ocurrieron los hechos.</label>
             <div class="col-10 ">
                 {{$lugares}}
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label">11)
-                 De ser posible detalle: día, hora y circunstancias en que se produjeron los hechos.</label>
+            <label class="form-label">8)
+                 Detalle brevemente día, hora y las circunstancias en que se produjeron los hechos.</label>
             <div class="col-10 ">
                 {{-- <div class="form-text">
                     Ejemplo 1: El día 4 de mayo me encontraba en mi domicilio, aproximadamente a las 9pm

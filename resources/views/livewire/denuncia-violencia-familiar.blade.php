@@ -22,7 +22,7 @@
                   <x-slot name="agredidos">
                     <x-multiple-inputs-table
                       tag="agredidos"
-                      :headers="$headers"
+                      :headers="$headers_agredido"
                       :inputRows="$agredido_rows"
                     >
                     </x-multiple-inputs-table>
@@ -41,13 +41,20 @@
                   <x-slot name="agresores">
                     <x-multiple-inputs-table
                       tag="agresores"
-                      :headers="$headers"
+                      :headers="$headers_agresor"
                       :inputRows="$agresor_rows"
                     >
                     </x-multiple-inputs-table>
                     <div class="d-flex justify-content-end">
-                      <button type="button" class="btn btn-success" wire:click="increase('agresor')">Añadir</button>
-                      <button type="button" class="btn btn-danger" wire:click="decrease('agresor')">Quitar</button>
+                        <div class="d-flex flex-column">
+                        <div>
+                          Si es más de una persona haz click en "Añadir"
+                        </div>
+                        <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-success" wire:click="increase('agresor')">Añadir</button>
+                        <button type="button" class="btn btn-danger" wire:click="decrease('agresor')">Quitar</button>
+                        </div>
+                        </div>
                     </div>
                   </x-slot>
                   <x-slot name="lugares">

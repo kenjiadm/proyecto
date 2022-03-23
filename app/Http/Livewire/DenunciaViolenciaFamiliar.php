@@ -44,6 +44,7 @@ class DenunciaViolenciaFamiliar extends Component
     public $rp7otro;
     public $respuesta9;
     public $respuesta10;
+    public $rp10otro;
     public $respuesta12;
     public $advertensia;
     public $confirmacion_anexos;
@@ -52,10 +53,15 @@ class DenunciaViolenciaFamiliar extends Component
     public $agredidos = [];
     public $lugares = [];
 
-    public $headers = [
+    public $headers_agredido = [
         'nombre',
         'apellidos',
         'edad'
+    ];
+
+    public $headers_agresor = [
+        'nombre',
+        'apellidos'
     ];
 
     public $headers_lugares = [
@@ -212,14 +218,17 @@ class DenunciaViolenciaFamiliar extends Component
                     $agresores .= "({$agresor['edad']})";
                 }
             }
-            $templateCarta->setValue('respuesta10', ", con quien tiene una relación de {$this->respuesta10}");
         }
         if($this->respuesta9 === 'no'){
             $agresores = 'los que resulten responsables';
-            $templateCarta->setValue('respuesta10', ".");
         }
-        
         $templateCarta->setValue('agresores', $agresores);
+
+        $respuesta10 = $this->respuesta10;
+            if($respuesta10 === 'otro'){
+                $respuesta10 = $this->rp10otro;
+            }
+        $templateCarta->setValue('respuesta10', ", con quien tiene una relación de {$respuesta10}");
 
         $agredidos = '';
         foreach ($this->agredidos as $key => $agredido) {
@@ -362,7 +371,7 @@ class DenunciaViolenciaFamiliar extends Component
                 'respuesta5_1_c_relacion' => 'required_if:respuesta5_1,c',
                 'respuesta5_1_d_relacion' => 'required_if:respuesta5_1,d',
                 'respuesta9' => 'required',
-                'respuesta10' => 'required_if:respuesta9,si',
+                'respuesta10' => 'required',
                 'agresores.*.nombre' => 'string|max:300|filled|distinct:strict',
                 'agresores.*.apellidos' => 'string|max:300|filled|distinct:strict',
                 'agresores.0.nombre' => 'string|max:300|required_if:respuesta9,si',
@@ -391,6 +400,9 @@ class DenunciaViolenciaFamiliar extends Component
                 if(in_array('otro',$this->respuesta4)){
                     $valiArray['rp4otro'] = 'required';
                 }
+            }
+            if($this->respuesta10 === 'otro'){
+                $valiArray['rp10otro'] = 'required';
             }
 
             $this->validate($valiArray,[
