@@ -422,6 +422,10 @@ class DenunciaViolenciaFamiliar extends Component
 
     public function render()
     {
+        if ($this->respuesta2 === 'si') {
+            $this->respuesta1 = 'no';
+        }
+
         foreach ($this->names as $value) {
             $this->respuestas[$value] = $this->{$value};
         }
