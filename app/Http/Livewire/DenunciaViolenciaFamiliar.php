@@ -124,20 +124,16 @@ class DenunciaViolenciaFamiliar extends Component
         if ($tag === 'agredido') {
             $this->agredido_rows < 4 ? $this->agredido_rows++ : $this->agredido_rows;
         }
-        if ($tag === 'lugar') {
-            $this->lugar_rows < 4 ? $this->lugar_rows++ : $this->lugar_rows;
-        }
     }
 
     public function decrease($tag){
         if ($tag === 'agresor') {
             $this->agresor_rows > 1 ? $this->agresor_rows-- : $this->agresor_rows;
+            if(count($this->agresores) > 1){array_pop($this->agresores);} 
         }
         if ($tag === 'agredido') {
             $this->agredido_rows > 1 ? $this->agredido_rows-- : $this->agredido_rows;
-        }
-        if ($tag === 'lugar') {
-            $this->lugar_rows > 1 ? $this->lugar_rows-- : $this->lugar_rows;
+            if(count($this->agredidos) > 1){array_pop($this->agredidos);} 
         }
     }
 
@@ -191,18 +187,13 @@ class DenunciaViolenciaFamiliar extends Component
             'direccion' => $this->direccion_denunciante,
             'distrito' => $this->distrito_denunciante,
             'provincia' => $this->ciudad_denunciante,
-            'respuesta3' => date('d-m-Y' ,strtotime($this->respuesta3)),
             'respuesta12' => $this->respuesta12,
-            'email' => $this->email_denunciante,
-            'direccion' => $this->direccion_denunciante,
-            'distrito' => $this->distrito_denunciante,
-            'provincia' => $this->ciudad_denunciante,
-            'celular' => $this->celular_denunciante,
             'dia' => today()->format('d'),
             'mes' => $meses[(today()->format('n')) - 1],
             'ano' => today()->format('Y'),
 
         ]);
+
         $agresores = '';
         if($this->respuesta9 === 'si'){
             foreach ($this->agresores as $key => $agresor) {
@@ -224,11 +215,18 @@ class DenunciaViolenciaFamiliar extends Component
         }
         $templateCarta->setValue('agresores', $agresores);
 
-        $respuesta10 = $this->respuesta10;
-            if($respuesta10 === 'otro'){
-                $respuesta10 = $this->rp10otro;
-            }
-        $templateCarta->setValue('respuesta10', ", con quien tiene una relación de {$respuesta10}");
+
+        $testigo2 = '';
+        if($this->respuesta1 === 'si' || $this->respuesta5 === 'si'){
+            $templateCarta->setValue('testigo1', "; al haber sido testigo de éstos.");
+            $testigo2 = " he sido testigo que";
+            $templateCarta->setValue('testigo3', ", es testigo de los mismos.");
+        } else {
+            $templateCarta->setValue('testigo1', ".");
+            $templateCarta->setValue('testigo3', ".");
+        }
+
+        $respuesta3 = date('d-m-Y' ,strtotime($this->respuesta3));
 
         $agredidos = '';
         foreach ($this->agredidos as $key => $agredido) {
@@ -244,7 +242,60 @@ class DenunciaViolenciaFamiliar extends Component
                 $agredidos .= "({$agredido['edad']})";
             }
         }
-        $templateCarta->setValue('agredidos', $agredidos);
+
+        $respuesta10text = $this->respuesta10;
+
+        if($respuesta10text === 'otro'){
+            $respuesta10text = $this->rp10otro;
+        }
+        $respuesta10 = ", con quien tiene una relación de: {$respuesta10text}.";
+
+        $check = 0;
+        $violenciafisica = '';
+        $respuesta4 = '';
+        if ($this->respuesta1 === 'si' || $this->respuesta2 === 'si') {
+            if (sizeof($this->respuesta4) !== 0) {
+                $check++;
+                $respuesta4Array = array_map(fn($value) => $value === 'otro' ? $this->rp4otro : $value , $this->respuesta4);
+                $violenciafisica = 'Violencia fisica';
+                $respuesta4 = '(';
+                for ($i=0; $i < count($respuesta4Array); $i++) {
+                    if ($i !== 0) {
+                        $respuesta4 .= ', ';
+                    } 
+                    $respuesta4 .= "{$respuesta4Array[$i]}";
+                }
+                $respuesta4 .= ')';
+            }
+        } 
+        $respuesta7 = '';
+        $violenciapsicologica = '';
+        if ($this->respuesta5 === 'si' || $this->respuesta6 === 'si') {
+            if (sizeof($this->respuesta7) !== 0) {
+                $check++;
+                $respuesta7Array = array_map(fn($value) => $value === 'otro' ? $this->rp4otro : $value , $this->respuesta7);
+                $violenciapsicologica = 'Violencia psicologica';
+                $respuesta7 = '(';
+                for ($i=0; $i < count($respuesta7Array); $i++) { 
+                    if ($i !== 0) {
+                        $respuesta7 .= ', ';
+                    }
+                    $respuesta7 .= "{$respuesta7Array[$i]}";
+                }
+                $respuesta7 .= ')';
+            } 
+        }
+        $y = ($check === 2) ? ' y ' : '';
+
+        if(count($this->agredidos) === 1){
+            $templateCarta->setValue('parrafo', "
+                El día {$respuesta3},{$testigo2} la persona {$agredidos}, ha sido víctima de {$violenciafisica} {$respuesta4}{$y}{$violenciapsicologica} {$respuesta7} de parte de {$agresores}{$respuesta10}
+            ");
+        } else {
+            $templateCarta->setValue('parrafo', "
+                El día {$respuesta3},{$testigo2} las personas {$agredidos}, han sido víctimas de {$violenciafisica} {$respuesta4}{$y}{$violenciapsicologica} {$respuesta7} de parte de {$agresores}{$respuesta10}
+            ");
+        }
 
         $lugares = '';
         foreach ($this->lugares as $key => $lugar) {
@@ -254,59 +305,6 @@ class DenunciaViolenciaFamiliar extends Component
             $lugares .= "{$lugar['direccion']}, {$lugar['distrito']}, {$lugar['provincia']}";
         }
         $templateCarta->setValue('lugares', $lugares);
-
-        $check = 0;
-        if ($this->respuesta1 === 'si' || $this->respuesta2 === 'si') {
-            if (sizeof($this->respuesta4) !== 0) {
-                $check++;
-                $respuesta4 = array_map(fn($value) => $value === 'otro' ? $this->rp4otro : $value , $this->respuesta4);
-                $templateCarta->setValue( 'violenciafisica', 'Violencia fisica' );
-                $rpta4items = '(';
-                for ($i=0; $i < count($respuesta4); $i++) {
-                    if ($i !== 0) {
-                        $rpta4items .= ', ';
-                    } 
-                    $rpta4items .= "{$respuesta4[$i]}";
-                }
-                $rpta4items .= ')';
-                $templateCarta->setValue('respuesta4', $rpta4items);
-            } else {
-                $templateCarta->setValue( 'violenciafisica', '' );
-                $templateCarta->setValue('respuesta4', '');
-            }
-        } else {
-            $templateCarta->setValue( 'violenciafisica', '' );
-            $templateCarta->setValue('respuesta4', '');
-        }
-
-        if ($this->respuesta5 === 'si' || $this->respuesta6 === 'si') {
-            if (sizeof($this->respuesta7) !== 0) {
-                $check++;
-                $respuesta7 = array_map(fn($value) => $value === 'otro' ? $this->rp4otro : $value , $this->respuesta7);
-                $templateCarta->setValue( 'violenciapsicologica', 'Violencia psicologica' );
-                $rpta7items = '(';
-                for ($i=0; $i < count($respuesta7); $i++) { 
-                    if ($i !== 0) {
-                        $rpta7items .= ', ';
-                    }
-                    $rpta7items .= "{$respuesta7[$i]}";
-                }
-                $rpta7items .= ')';
-                $templateCarta->setValue('respuesta7', $rpta7items);
-            } else {
-                $templateCarta->setValue( 'violenciapsicologica', '' );
-                $templateCarta->setValue('respuesta7', '');
-            }
-        } else {
-            $templateCarta->setValue( 'violenciapsicologica', '' );
-            $templateCarta->setValue('respuesta7', '');
-        }
-
-        if($check === 2){
-            $templateCarta->setValue( 'y', 'y' );
-        } else {
-            $templateCarta->setValue( 'y', '' );
-        }
 
         if($this->respuesta2 === 'si' || $this->respuesta6 === 'si'){
             $templateCarta->setValue( 'rpta2y6', 'SI' );
@@ -424,6 +422,9 @@ class DenunciaViolenciaFamiliar extends Component
     {
         if ($this->respuesta2 === 'si') {
             $this->respuesta1 = 'no';
+        }
+        if ($this->respuesta6 === 'si') {
+            $this->respuesta5 = 'no';
         }
 
         foreach ($this->names as $value) {
