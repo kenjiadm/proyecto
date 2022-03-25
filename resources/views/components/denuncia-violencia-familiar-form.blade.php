@@ -112,7 +112,7 @@
         </div>
         @if ($respuestas['respuesta1'] === 'si')
         <div class="mb-3">
-            <label class="form-label">4) Tengo conocimiento de actos de violencia física en contra de otra persona en
+            <label class="form-label">2.1) Tengo conocimiento de actos de violencia física en contra de otra persona en
                 mí condición de:</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="respuesta1_1" wire:model.lazy="respuesta1_1"
@@ -146,7 +146,7 @@
         </div>
         @if ($respuestas['respuesta1_1'] === 'a')
         <div class="mb-3">
-            <label class="form-label">4.1) Precisar cargo y centro de salud en el que se desempeña</label>
+            <label class="form-label">2.1.1) Precisar cargo y centro de salud en el que se desempeña</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
                     <label for="rp1_1_a_c" class="col-5 col-form-label">Cargo :</label>
@@ -169,7 +169,7 @@
         @endif
         @if ($respuestas['respuesta1_1'] === 'b')
         <div class="mb-3">
-            <label class="form-label">4.1) Precisar cargo y centro educativo en el que se desempeña</label>
+            <label class="form-label">2.1.1) Precisar cargo y centro educativo en el que se desempeña</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
                     <label for="rp1_1_b_c" class="col-5 col-form-label">Cargo :</label>
@@ -192,7 +192,7 @@
         @endif
         @if ($respuestas['respuesta1_1'] === 'c')
         <div class="mb-3">
-            <label class="form-label">4.1) Precisar el parentesco que mantiene con la víctima, que le permitió tomar
+            <label class="form-label">2.1.1) Precisar el parentesco que mantiene con la víctima, que le permitió tomar
                 conocimiento de los hechos que denuncia:</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
@@ -209,7 +209,7 @@
         @endif
         @if ($respuestas['respuesta1_1'] === 'd')
         <div class="mb-3">
-            <label class="form-label">4.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
+            <label class="form-label">2.1.1) Precisar la relación que mantiene con la víctima, que le permitió tomar
                 conocimiento de los hechos que denuncia:</label>
             <div class="col-10 ">
                 <div class="form-group row my-2 align-items-center">
