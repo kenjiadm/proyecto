@@ -108,6 +108,9 @@
                     No
                 </label>
             </div>
+            @if ($respuestas['respuesta1'] === 'no' && $respuestas['respuesta2'] === 'si')
+                <small>En caso haya una persona agraviada además de usted, consigne en el numeral 6.</small>
+            @endif
             <div class="form-text text-danger">@error('respuesta1') {{$message}} @enderror</div>
         </div>
         @if ($respuestas['respuesta1'] === 'si')
@@ -399,6 +402,9 @@
                     No
                 </label>
             </div>
+            @if ($respuestas['respuesta6'] === 'no' && $respuestas['respuesta5'] === 'si')
+                <small>En caso haya una persona agraviada además de usted, consigne en el numeral 6.</small>
+            @endif
             <div class="form-text text-danger">@error('respuesta5') {{$message}} @enderror</div>
         </div>
         @if ($respuestas['respuesta5'] === 'si')

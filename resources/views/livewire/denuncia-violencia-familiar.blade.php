@@ -3,7 +3,7 @@
         <div class="row d-flex justify-content-center">
             @if ($currentCount === 1)
             <div class="col-12 col-md-8 d-flex flex-column align-items-center justify-content-center py-5 px-md-5">
-                <h3>Paso 1/2: Información de contacto</h3>
+                <h3>Paso 1/3: Información de contacto</h3>
                 <x-denunciante-contact-form></x-denunciante-contact-form>
                 <div class="w-100 d-flex justify-content-around">
                     <button wire:click="back" type="button" class="btn btn-secondary">
@@ -17,7 +17,7 @@
             @endif
             @if ($currentCount === 2)
             <div class="col-12 col-md-10 col-lg-8 d-flex flex-column align-items-center justify-content-center py-5 px-md-5">
-                <h3>Paso 2/2: Información para la denuncia</h3>
+                <h3>Paso 2/3: Información para armar la denuncia</h3>
                 <x-denuncia-violencia-familiar-form :respuestas="$respuestas">
                   <x-slot name="agredidos">
                     <x-multiple-inputs-table
@@ -94,7 +94,10 @@
                   </div>
                   </x-slot>
                 </x-denuncia-violencia-familiar-form>
-                <div class="w-100 d-flex justify-content-around">
+                <div class="w-100 d-flex py-5 px-md-5">
+                    <h3>Paso 3/3</h3>
+                </div>
+                <div class="w-100 d-flex justify-content-around align-items-end">
                     <button wire:click='decreaseCount' type="button" class="btn btn-secondary">
                         Atrás
                     </button>

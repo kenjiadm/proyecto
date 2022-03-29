@@ -1,5 +1,5 @@
 <div>
-<h5 class="mx-4 px-4 mt-4 pt-4">Esta información es para contactar con el denunciante</h5>
+<h5 class="mx-4 px-4 mt-4 pt-4">DATOS PERSONALES DEL DENUNCIANTE</h5>
 <div class="m-4 p-4">
   <div class="mb-3">
     <label class="form-label">Nombre del Denunciante</label>
