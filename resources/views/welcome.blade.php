@@ -4,11 +4,14 @@
 
 <div class="container-fluid d-flex flex-column  align-items-center" style="height: 100vh">
     <div class="row w-100">
-        <div class="col d-flex justify-content-center align-items-center ">
-            <div class="col-12 col-md-10 col-lg-8">
+        <div class="d-flex flex-column justify-content-center align-items-center ">
+            <div class="col-12 col-md-10 col-lg-8 text-center text-primary mt-4">
+                <h4>SI HAS SIDO VICTIMA Y/O PRESENCIADO VIOLENCIA FAMILIAR, EL PRESENTE APLICATIVO WEB, TIENE POR FINALIDAD AYUDARTE EN LA ALABORACIÓN DE TU DENUNCIA PENAL. </h4>
+            </div>
+            <div style="overflow: hidden" class="col-12 col-md-10 col-lg-8">
                 <picture>
                     <source class="img-fluid rounded" media="(max-width: 700px)" srcset="{{ asset('storage/img/Ilustración_pasos_celular.jpg') }}">
-                    <img class="img-fluid rounded" src="{{ asset('storage/img/Ilustración_pasos.jpg') }}" alt="">
+                    <img style="margin-top:-5%" class="img-fluid rounded" src="{{ asset('storage/img/Ilustración_pasos.jpg') }}" alt="">
                 </picture>
             </div>
         </div>
