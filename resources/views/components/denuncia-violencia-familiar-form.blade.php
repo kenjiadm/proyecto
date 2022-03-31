@@ -402,7 +402,7 @@
                     No
                 </label>
             </div>
-            @if ($respuestas['respuesta5'] === 'si')
+            @if ($respuestas['respuesta6'] === 'si')
                 <small>En caso haya una persona agraviada además de usted, consigne en el numeral 6.</small>
             @endif
             <div class="form-text text-danger">@error('respuesta5') {{$message}} @enderror</div>
