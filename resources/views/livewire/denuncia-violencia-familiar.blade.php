@@ -1,6 +1,13 @@
 <div>
     <div class="container">
         <div class="row d-flex justify-content-center">
+            @if($errors->any())
+            <ul>
+                @foreach ($errors->toArray() as $key => $value)
+                    <li>{{ $key  }}</li>
+                @endforeach 
+            </ul>
+            @endif
             @if ($currentCount === 1)
             <div class="col-12 col-md-8 d-flex flex-column align-items-center justify-content-center py-5 px-md-5">
                 <h3>Paso 1/3: Información de contacto</h3>
