@@ -60,3 +60,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Detalles para acceder
+
+Debes seguir estos pasos para utilizar el sistema. 
+1. Configurar el archivo .env del sistema completo. 
+2. Actualizar la información de la base de datos a usar. 
+3. Tener los archivos template para la creación de las denuncias. 
+4. Generar el Storage:Link para que sea público. 
+5. Correr el proyecto. 
+
+## Generar una denuncia
+
+Para generar un archivo WORD debes seguir estos pasos: 
+1. Ingresar a accedealajusticia.com
+2. Leer los detalles antes de empezar. 
+3. Click al botón de la primera página. 
+4. Llenar primero los datos de la persona que está realizando la denuncia y darle click a siguiente. 
+5. Llenar los datos especificos de la denuncia, teniendo en cuenta que la información proporcionada es real. 
+6. Generar denuncia y listo, estará descargando un archivo WORD con la denuncia creada con los datos. 
+
+
+
